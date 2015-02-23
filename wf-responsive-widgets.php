@@ -35,8 +35,11 @@ class PlgSystemWfresponsivewidgets extends JPlugin
 		return $this->_wrap($row, $params);
 	}
 
-  private function _wrap($text, $params)
-  {
-    return preg_replace('#<(iframe|object|video|audio|embed)#i', '<div class="wf-$1-container"><$1');
-  }
+  	private function _wrap($text, $params)
+  	{
+    		// opening tag
+    		$text = preg_replace('#<(iframe|object|video|audio|embed)#i', '<div class="wf-$1-container"><$1');
+    		// cloasing tag
+    		$text = preg_replace('#<\/(iframe|object|video|audio|embed)>#i', '</$1></div>');
+  	}
 }
