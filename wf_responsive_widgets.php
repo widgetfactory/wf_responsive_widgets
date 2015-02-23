@@ -7,7 +7,7 @@ defined('_JEXEC') or die;
  * @package     Joomla.Plugin
  * @subpackage  System.wf-responsive-widgets
  */
-class PlgSystemWfresponsivewidgets extends JPlugin
+class PlgSystemWf_responsive_widgets extends JPlugin
 {
 	public function onAfterDispatch() {
 	        $app = JFactory::getApplication();
@@ -24,7 +24,7 @@ class PlgSystemWfresponsivewidgets extends JPlugin
 	            return;
 	        }
 	        
-	        $document->addStyleSheet(JURI::base(true) . '/plugins/system/wf-responsive-widgets/css/responsive.css');
+	        $document->addStyleSheet(JURI::base(true) . '/plugins/system/wf_responsive_widgets/css/responsive.css');
 	}
 	
 	/**
