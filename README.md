@@ -8,6 +8,6 @@ Click [here to download](https://github.com/widgetfactory/wf_responsive_widgets/
 Install using the Joomla Extensions Installer
 
 ## How To Use
-Once installed, remember to enable the plugin. Once enabled, all iframe, object, embed, video and audio tags will be wrapped in a <div> container when the page loads.
+Once installed, remember to enable the plugin. Once enabled, all iframe, object, embed, video and audio tags will be wrapped in a &lt;div&gt; container when the page loads.
 
-To disable this for a particular element, add a class of "wf-no-container" to the element, eg: <video class="wf-no-container" src="video.mp4"></video>
+To disable this for a particular element, add a class of "wf-no-container" to the element, eg: &lt;video class="wf-no-container" src="video.mp4"&gt;&lt;/video&gt;
