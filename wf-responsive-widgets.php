@@ -9,7 +9,25 @@ defined('_JEXEC') or die;
  */
 class PlgSystemWfresponsivewidgets extends JPlugin
 {
-/**
+	public function onAfterDispatch() {
+	        $app = JFactory::getApplication();
+	
+	        if ($app->isAdmin()) {
+	            return;
+	        }
+	
+	        $document = JFactory::getDocument();
+	        $docType = $document->getType();
+	
+	        // only in html pages
+	        if ($docType != 'html') {
+	            return;
+	        }
+	        
+	        $document->addStyleSheet(JURI::base(true) . '/plugins/system/wf-responsive-widgets/css/responsive.css');
+	}
+	
+	/**
 	 * Wrap media elements in a div container.
 	 *
 	 * @param   string   $context  The context of the content being passed to the plugin.
