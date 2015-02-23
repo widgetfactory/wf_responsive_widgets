@@ -44,20 +44,24 @@ class PlgSystemWf_responsive_widgets extends JPlugin
 		{
 			return true;
 		}
+		
+		jimport('joomla.environment.browser');
 
-		if (is_object($row))
-		{
-			return $this->_wrap($row->text, $params);
-		}
-
-		return $this->_wrap($row, $params);
-	}
-
-  	private function _wrap($text, $params)
-  	{
-    		// opening tag
-    		$text = preg_replace('#<(iframe|object|video|audio|embed)#i', '<div class="wf-$1-container"><$1', $text);
+		// opening tag
+    		$row->text = preg_replace_callback('#<(iframe|object|video|audio|embed)#i', array($this, 'wrap'), $row->text);
     		// cloasing tag
-    		$text = preg_replace('#<\/(iframe|object|video|audio|embed)>#i', '</$1></div>', $text);
-  	}
+    		$row->text = preg_replace('#<\/(iframe|object|video|audio|embed)>#i', '</$1></div>', $row->text);
+	}
+	
+	private function wrap($matches) {
+		$class = 'wf-' . $matches[1] . '-container';
+    		
+    		$browser = JBrowser::getInstance();
+    		
+    		if (preg_match('#\biPhone.*Mobile|\biPod|\biPad#', $browser->getAgentString())) {
+    			$class .= '-ios';
+    		}
+    		
+    		return '<div class="' . $class . '"><' . $matches[1];
+	}
 }
