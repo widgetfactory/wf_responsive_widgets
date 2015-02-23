@@ -58,7 +58,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin
     		
     		$browser = JBrowser::getInstance();
     		
-    		if (preg_match('#\biPhone.*Mobile|\biPod|\biPad#', $browser->getAgentString())) {
+    		if (preg_match('#/ip(hone|ad|od)/i#', $browser->getAgentString())) {
     			$class .= '-ios';
     		}
     		
