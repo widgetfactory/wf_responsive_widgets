@@ -33,11 +33,11 @@ class PlgSystemWf_responsive_widgets extends JPlugin
 	 * Wrap media elements in a div container.
 	 *
 	 * @param   string   $context  The context of the content being passed to the plugin.
-	 * @param   mixed    &$row     An object with a "text" property or the string to be cloaked.
-	 * @param   mixed    &$params  Additional parameters. See {@see PlgSystemWfresponsivewidgets()}.
+	 * @param   mixed    &$row     An object with a "text" property.
+	 * @param   mixed    &$params  Additional parameters. See {@see PlgSystemWf_responsive_widgets()}.
 	 * @param   integer  $page     Optional page number. Unused. Defaults to zero.
 	 *
-	 * @return  boolean	True on success.
+	 * @return  void
 	 */
 	public function onContentPrepare($context, &$row, &$params, $page = 0)
 	{
