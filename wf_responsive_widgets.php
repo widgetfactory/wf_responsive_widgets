@@ -49,10 +49,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin
 		
 		jimport('joomla.environment.browser');
 
-		// opening tag
-    		$row->text = preg_replace_callback('#<(iframe|object|video|audio|embed)([^>]+)>#i', array($this, 'wrap'), $row->text);
-    		// cloasing tag
-    		$row->text = preg_replace('#<\/(iframe|object|video|audio|embed)>#i', '</$1></div>', $row->text);
+    		$row->text = preg_replace_callback('#<(iframe|object|video|audio|embed)([^>]+)>([\s\S]*?)<\/\1>#i', array($this, 'wrap'), $row->text);
 	}
 	
 	private function getAttributes($string) {
@@ -61,16 +58,20 @@ class PlgSystemWf_responsive_widgets extends JPlugin
 	
 	private function wrap($matches) {
 		$tag 	= $matches[1];
-    		$data 	= $matches[2];
-    	
-    		// get attributes
-    		$attribs = $this->getAttributes(trim($data));
-    	
+	    	$data 	= $matches[2];
+	    	$html	= $matches[3];
+	    	
+	    	// default return html
+	    	$default = '<' . $tag . $data . '>' . $html . '</' . $tag . '>';
+	    	
+	    	// get attributes
+	    	$attribs = $this->getAttributes(trim($data));
+	    	
 	    	if (!empty($attribs['class']) && strpos($attribs['class'], 'wf-no-container') !== false) {
-	    		return '<' . $tag . $data . '>';
+	    		return $default;
 	    	}
 			
-		$class = 'wf-' . $tag . '-container';
+			$class = 'wf-' . $tag . '-container';
 	    		
 	    	$browser = JBrowser::getInstance();
 	    	
@@ -79,11 +80,11 @@ class PlgSystemWf_responsive_widgets extends JPlugin
 	    			if (preg_match('#/ip(hone|ad|od)/i#', $browser->getAgentString())) {
 	    				$class = 'wf-' . $tag . '-container-ios';
 	    			} else {
-	    				return '<' . $tag . $data . '>';
+	    				return $default;
 	    			}
 	    		}
 	    	}
 	
-	    	return '<div class="' . $class . '"><' . $tag . $data . '>';
+	    	return '<div class="' . $class . '">' . $default . '</div>';
 	}
 }
