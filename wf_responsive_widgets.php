@@ -9,7 +9,9 @@ defined('_JEXEC') or die;
  */
 class PlgSystemWf_responsive_widgets extends JPlugin
 {
-	public function onAfterDispatch() {
+	private static $media_pattern = '#(dai\.?ly(motion)?|youtu(\.)?be|vimeo\.com)#i';
+	
+	public function onAfterDispatch() {	        
 	        $app = JFactory::getApplication();
 	
 	        if ($app->isAdmin()) {
@@ -48,20 +50,40 @@ class PlgSystemWf_responsive_widgets extends JPlugin
 		jimport('joomla.environment.browser');
 
 		// opening tag
-    		$row->text = preg_replace_callback('#<(iframe|object|video|audio|embed)#i', array($this, 'wrap'), $row->text);
+    		$row->text = preg_replace_callback('#<(iframe|object|video|audio|embed)([^>]+)>#i', array($this, 'wrap'), $row->text);
     		// cloasing tag
     		$row->text = preg_replace('#<\/(iframe|object|video|audio|embed)>#i', '</$1></div>', $row->text);
 	}
 	
+	private function getAttributes($string) {
+		return JUtility::parseAttributes($string);
+	}
+	
 	private function wrap($matches) {
-		$class = 'wf-' . $matches[1] . '-container';
-    		
-    		$browser = JBrowser::getInstance();
-    		
-    		if (preg_match('#/ip(hone|ad|od)/i#', $browser->getAgentString())) {
-    			$class .= '-ios';
-    		}
-    		
-    		return '<div class="' . $class . '"><' . $matches[1];
+		$tag 	= $matches[1];
+    		$data 	= $matches[2];
+    	
+    		// get attributes
+    		$attribs = $this->getAttributes(trim($data));
+    	
+	    	if (!empty($attribs['class']) && strpos($attribs['class'], 'wf-no-container') !== false) {
+	    		return '<' . $tag . $data . '>';
+	    	}
+			
+		$class = 'wf-' . $tag . '-container';
+	    		
+	    	$browser = JBrowser::getInstance();
+	    	
+	    	if ($tag === "iframe") {
+	    		if (preg_match(self::$media_pattern, $attribs['src']) === false) {
+	    			if (preg_match('#/ip(hone|ad|od)/i#', $browser->getAgentString())) {
+	    				$class = 'wf-' . $tag . '-container-ios';
+	    			} else {
+	    				return '<' . $tag . $data . '>';
+	    			}
+	    		}
+	    	}
+	
+	    	return '<div class="' . $class . '"><' . $tag . $data . '>';
 	}
 }
