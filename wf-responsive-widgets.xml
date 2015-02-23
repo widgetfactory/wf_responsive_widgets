@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="system">
+	<name>plg_system_wfresponsivewidgets</name>
+	<author>Widget Factory</author>
+	<creationDate>February 2015</creationDate>
+	<copyright>Copyright (C) 2015 Ryan. All rights reserved.</copyright>
+	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
+	<authorEmail>info@joomlacontenteditor.net</authorEmail>
+	<authorUrl>www.joomlacontenteditor.net</authorUrl>
+	<version>1.0.0</version>
+	<description>Wrap media elements in a responsive container</description>
+	<files>
+		<filename plugin="wf-responsive-widgets">wf-responsive-widgets.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages></languages>
+	<config></config>
+</extension>
