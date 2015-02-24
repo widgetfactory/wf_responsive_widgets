@@ -2,7 +2,7 @@
 .wf-iframe-container {
     overflow:scroll !important; -webkit-overflow-scrolling:touch !important;
 }
-
+/* Credits to http://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
 .wf-iframe-container,
 .wf-object-container,
 .wf-embed-container,
