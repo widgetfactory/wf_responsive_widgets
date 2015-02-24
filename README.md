@@ -23,5 +23,7 @@ Once installed, remember to enable the plugin. Once enabled, all iframe, object,
 
 To disable this for a particular element, add a class of "wf-no-container" to the element, eg: `<video class="wf-no-container" src="video.mp4"></video>`
 
+Add {responsive=off} at the beginning of any article to disable the plugin for that article only.
+
 ## Bug Reports / Support / Issues
 This plugin is in beta, so expect some probelms. Please use the Gitub Issue tracker to tell us about a any you've found.
