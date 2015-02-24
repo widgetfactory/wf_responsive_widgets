@@ -7,6 +7,8 @@ Click [here to download](https://github.com/widgetfactory/wf_responsive_widgets/
 ## Installation
 Install using the Joomla Extensions Installer
 
+https://docs.joomla.org/Installing_an_extension
+
 ## What it does
 This plugin wraps all object, embed, audio, video, and some iframe elements in a div tag that contains a class that adds responsive features via css. For example, this code:
 
