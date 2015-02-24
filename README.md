@@ -7,7 +7,18 @@ Click [here to download](https://github.com/widgetfactory/wf_responsive_widgets/
 ## Installation
 Install using the Joomla Extensions Installer
 
-## How To Use
-Once installed, remember to enable the plugin. Once enabled, all iframe, object, embed, video and audio tags will be wrapped in a &lt;div&gt; container when the page loads.
+## What it does
+This plugin wraps all object, embed, audio, video, and some iframe elements in a div tag that contains a class that adds responsive features via css. For example, this code:
 
-To disable this for a particular element, add a class of "wf-no-container" to the element, eg: &lt;video class="wf-no-container" src="video.mp4"&gt;&lt;/video&gt;
+`<video src="my_movie.mp4" type="video/mp4"></video>`
+
+will become:
+
+`<div class="wf-video-container"><video src="my_movie.mp4" type="video/mp4"></video></div>`
+
+Only iframe elements that display Youtube, Vimeo and DailyMotion content are wrapped in the div. On iOS (iPad, iPhone, iPod), iframes (not already wrapped in the responsive div) are wrapped in a div to fix a scolling issue on this platform.
+
+## How to use it
+Once installed, remember to enable the plugin. Once enabled, all iframe, object, embed, video and audio tags will be wrapped in a `<div>` container when the page loads.
+
+To disable this for a particular element, add a class of "wf-no-container" to the element, eg: `<video class="wf-no-container" src="video.mp4"></video>`
