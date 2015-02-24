@@ -47,6 +47,17 @@ class PlgSystemWf_responsive_widgets extends JPlugin
 			return true;
 		}
 		
+		/*
+		 * Check for presence of {responsive=off} which is disables this
+		 * bot for the item.
+		 */
+		if (JString::strpos($text, '{responsive=off}') !== false)
+		{
+			$text = JString::str_ireplace('{responsive=off}', '', $text);
+
+			return true;
+		}
+		
 		jimport('joomla.environment.browser');
 
     		$row->text = preg_replace_callback('#<(iframe|object|video|audio|embed)([^>]+)>([\s\S]*?)<\/\1>#i', array($this, 'wrap'), $row->text);
