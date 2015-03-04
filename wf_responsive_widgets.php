@@ -51,9 +51,9 @@ class PlgSystemWf_responsive_widgets extends JPlugin
 		 * Check for presence of {responsive=off} which is disables this
 		 * bot for the item.
 		 */
-		if (JString::strpos($text, '{responsive=off}') !== false)
+		if (JString::strpos($row->text, '{responsive=off}') !== false)
 		{
-			$text = JString::str_ireplace('{responsive=off}', '', $text);
+			$row->text = JString::str_ireplace('{responsive=off}', '', $row->text);
 
 			return true;
 		}
