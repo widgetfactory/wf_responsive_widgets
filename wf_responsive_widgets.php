@@ -85,7 +85,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
         $browser = JBrowser::getInstance();
 
         if ($tag === "iframe") {
-            if (!preg_match(self::$media_pattern, $attribs['src']) === false) {
+            if (!preg_match(self::$media_pattern, $attribs['src'])) {
                 if (preg_match('#/ip(hone|ad|od)/i#', $browser->getAgentString())) {
                     $class = 'wf-' . $tag . '-container-ios';
                 } else {
