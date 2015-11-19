@@ -2,6 +2,9 @@
 .wf-iframe-container {
     overflow:scroll !important; -webkit-overflow-scrolling:touch !important;
 }
+
+.wf-iframe-container.wf-iframe-media {overflow: inherit !important; -webkit-overflow-scrolling:inherit !important;}
+
 /* Credits to http://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
 .wf-iframe-container,
 .wf-object-container,
