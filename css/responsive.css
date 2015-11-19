@@ -17,7 +17,8 @@
 .wf-iframe-container iframe,
 .wf-object-container object,
 .wf-embed-container embed,
-.wf-video-container video {
+.wf-video-container video,
+.wf-video-container iframe {
     border: 0 none;  
     position: absolute;
     top: 0;
