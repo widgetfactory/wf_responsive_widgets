@@ -91,6 +91,8 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
                 } else {
                     return $default;
                 }
+            } else {
+                $class = 'wf-iframe-container wf-iframe-media';
             }
         }
 
