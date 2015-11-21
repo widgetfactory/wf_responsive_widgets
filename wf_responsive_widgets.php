@@ -96,7 +96,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
             }
         }
 
-        return '<div class="' . $class . '">' . $default . '</div>';
+        return '<span class="' . $class . '">' . $default . '</span>';
     }
 
 }
