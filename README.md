@@ -18,7 +18,7 @@ will become:
 
 `<span class="wf-video-container"><video src="my_movie.mp4" type="video/mp4"></video></span>`
 
-Only iframe elements that display Youtube, Vimeo and DailyMotion content are wrapped in the div. On iOS (iPad, iPhone, iPod), iframes (not already wrapped in the responsive div) are wrapped in a div to fix a scolling issue on this platform.
+Only iframe elements that display Youtube, Vimeo and DailyMotion content are wrapped. On iOS (iPad, iPhone, iPod), iframes (not already wrapped in the responsive container) are wrapped  to fix a scolling issue on this platform.
 
 ## How to use it
 Once installed, remember to enable the plugin. Once enabled, all iframe, object, embed, video and audio tags will be wrapped in a `<span>` container when the page loads.
