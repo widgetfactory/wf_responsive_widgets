@@ -88,8 +88,6 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
             if (!preg_match(self::$media_pattern, $attribs['src'])) {
                 if (preg_match('#/ip(hone|ad|od)/i#', $browser->getAgentString())) {
                     $class = 'wf-' . $tag . '-container-ios';
-                } else {
-                    return $default;
                 }
             } else {
                 $class = 'wf-video-container';
