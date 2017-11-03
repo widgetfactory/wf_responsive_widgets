@@ -1,40 +1,49 @@
 /* fix scrolling issues on iOS */
+
 .wf-iframe-container {
-    overflow:scroll !important; -webkit-overflow-scrolling:touch !important;
+  overflow: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
 }
 
+
 /* Credits to http://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
+
 .wf-iframe-container,
 .wf-object-container,
 .wf-embed-container,
 .wf-video-container {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
+  padding-bottom: 56.25%;
+  /* 16:9 */
   padding-top: 25px;
   width: 100%;
   height: 0;
   display: block;
 }
+
 @media screen and (orientation:portrait) {
-	.wf-iframe-container {
-		width: 1px;
-		min-width: 100%;
-		height: 100%;
-		padding-bottom: 100%;
-	}
+  .wf-iframe-container {
+    width: 1px;
+    min-width: 100%;
+    height: 100%;
+    padding-bottom: 100%;
+  }
 }
+
 .wf-iframe-container iframe,
 .wf-object-container object,
 .wf-embed-container embed,
 .wf-video-container video,
 .wf-video-container iframe {
-    border: 0 none;  
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  border: 0 none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
+
 .wf-audio-container {
   text-align: center;
   width: 100%;
