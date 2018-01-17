@@ -22,7 +22,7 @@
 	
 	<updateservers>
         	<server type="collection" priority="1" name="Wf Responsive Widgets">
-            		<![CDATA[https://cdn.joomlacontenteditor.net/updates/xml/plg_wf_responsive_widgets.xml]]>
+            		<![CDATA[https://cdn.joomlacontenteditor.net/updates/xml/plg_system_wf_responsive_widgets.xml]]>
         	</server>
     	</updateservers>
 </extension>
