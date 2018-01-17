@@ -2,8 +2,8 @@
 <extension version="3.1" type="plugin" group="system" method="upgrade">
 	<name>plg_system_wf_responsive_widgets</name>
 	<author>Widget Factory</author>
-	<creationDate>February 2015</creationDate>
-	<copyright>Copyright (C) 2017 Ryan. All rights reserved.</copyright>
+	<creationDate>January 2018</creationDate>
+	<copyright>Copyright (C) 2018 Ryan. All rights reserved.</copyright>
 	<license>GNU General Public License version 3 or later; see LICENSE.txt</license>
 	<authorEmail>info@joomlacontenteditor.net</authorEmail>
 	<authorUrl>www.joomlacontenteditor.net</authorUrl>
@@ -21,8 +21,6 @@
 	<config></config>
 	
 	<updateservers>
-        	<server type="collection" priority="1" name="Wf Responsive Widgets">
-            		<![CDATA[https://cdn.joomlacontenteditor.net/updates/xml/plg_system_wf_responsive_widgets.xml]]>
-        	</server>
+        	<server type="extension" priority="1" name="Wf Responsive Widgets"><![CDATA[https://cdn.joomlacontenteditor.net/updates/xml/plg_system_wf_responsive_widgets.xml]]></server>
     	</updateservers>
 </extension>
