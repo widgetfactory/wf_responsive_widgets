@@ -45,6 +45,11 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
         if ($context == 'com_finder.indexer') {
             return true;
         }
+        
+        // don't process if there is not text
+        if (empty($row->text)) {
+            return true;
+        }
 
         /*
          * Check for presence of {responsive=off} which is disables this
