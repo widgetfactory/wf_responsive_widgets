@@ -1,7 +1,7 @@
 /* fix scrolling issues on iOS */
 
 .wf-responsive-iframe-container {
-  overflow: scroll !important;
+  overflow: auto !important;
   -webkit-overflow-scrolling: touch !important;
 }
 
