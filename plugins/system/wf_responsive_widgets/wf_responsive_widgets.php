@@ -52,7 +52,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
         }
         
         // check for previous processing
-        if (JString::strpos($row->text, '<span class="wf-') !== false) {
+        if (JString::strpos($row->text, '<span class="wf-responsive-') !== false) {
             return true;
         }
 
@@ -86,21 +86,21 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
         // get attributes
         $attribs = $this->getAttributes(trim($data));
 
-        if (!empty($attribs['class']) && strpos($attribs['class'], 'wf-no-container') !== false) {
+        if (!empty($attribs['class']) && strpos($attribs['class'], 'wf-responsive-no-container') !== false) {
             return $default;
         }
 
-        $class = 'wf-' . $tag . '-container';
+        $class = 'wf-responsive-' . $tag . '-container';
 
         $browser = JBrowser::getInstance();
 
         if ($tag === "iframe") {
             if (!preg_match(self::$media_pattern, $attribs['src'])) {
                 if (preg_match('#/ip(hone|ad|od)/i#', $browser->getAgentString())) {
-                    $class = 'wf-' . $tag . '-container-ios';
+                    $class = 'wf-responsive-' . $tag . '-container-ios';
                 }
             } else {
-                $class = 'wf-video-container';
+                $class = 'wf-responsive-video-container';
             }
         }
 
