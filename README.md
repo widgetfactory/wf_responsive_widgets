@@ -16,14 +16,14 @@ This plugin wraps all object, embed, audio, video, and some iframe elements in a
 
 will become:
 
-`<span class="wf-video-container"><video src="my_movie.mp4" type="video/mp4"></video></span>`
+`<span class="wf-responsive-video-container"><video src="my_movie.mp4" type="video/mp4"></video></span>`
 
 On iOS (iPad, iPhone, iPod), iframes (not already wrapped in the responsive container) are wrapped  to fix a scolling issue on this platform.
 
 ## How to use it
 Once installed, remember to enable the plugin. Once enabled, all iframe, object, embed, video and audio tags will be wrapped in a `<span>` container when the page loads.
 
-To disable this for a particular element, add a class of "wf-no-container" to the element, eg: `<video class="wf-no-container" src="video.mp4"></video>`
+To disable this for a particular element, add a class of "wf-no-container" to the element, eg: `<video class="wf-responsive-no-container" src="video.mp4"></video>`
 
 Add {responsive=off} at the beginning of any article to disable the plugin for that article only.
 
