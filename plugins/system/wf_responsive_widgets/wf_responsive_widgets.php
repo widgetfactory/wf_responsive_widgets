@@ -50,6 +50,13 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
         if (empty($row->text)) {
             return true;
         }
+        
+        // check for previous processing
+        if (JString::strpos($row->text, '<span class="wf-') !== false) {
+            if (preg_match('#/wf-(iframe|object|embed|video)-container/i#', $row-text)) {
+                return true;
+            }
+        }
 
         /*
          * Check for presence of {responsive=off} which is disables this
