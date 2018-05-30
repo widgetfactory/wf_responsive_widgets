@@ -53,9 +53,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
         
         // check for previous processing
         if (JString::strpos($row->text, '<span class="wf-') !== false) {
-            if (preg_match('#/wf-(iframe|object|embed|video)-container/i#', $row->text)) {
-                return true;
-            }
+            return true;
         }
 
         /*
