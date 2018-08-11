@@ -19,6 +19,9 @@
   width: 100%;
   height: inherit;
   display: block;
+  overflow: hidden;
+  /* center container */
+  margin: auto;
 }
 
 @media screen and (orientation:portrait) {
