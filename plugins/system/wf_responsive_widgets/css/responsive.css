@@ -53,3 +53,9 @@
   height: auto;
   display: block;
 }
+
+.wf-responsive-fixed-width object,
+.wf-responsive-fixed-width embed,
+.wf-responsive-fixed-width video {
+  height: auto;
+}
