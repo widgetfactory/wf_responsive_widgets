@@ -89,6 +89,15 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
         if (!empty($attribs['class']) && strpos($attribs['class'], 'wf-responsive-no-container') !== false) {
             return $default;
         }
+        
+        $styles = array();
+        
+        $width  = isset($attribs['width']) ? $attribs['width'] : 0;
+        $height = isset($attribs['height']) ? $attribs['height'] : 0;
+
+        if (isset($attribs['width']) && !preg_match('/\D/', $attribs['width'])) {
+            $styles[] = 'max-width:' . $attribs['width'] . 'px';
+        }
 
         $class = 'wf-responsive-' . $tag . '-container';
 
@@ -104,7 +113,13 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
             }
         }
 
-        return '<span class="' . $class . '">' . $default . '</span>';
+        $style = '';
+
+        if (!empty($styles)) {
+            $style = ' style="' . implode(';', $styles) . '"'; 
+        }
+
+        return '<span class="' . $class . '" ' . $style . '>' . $default . '</span>';
     }
 
 }
