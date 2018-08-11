@@ -90,15 +90,6 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
             return $default;
         }
         
-        $styles = array();
-        
-        $width  = isset($attribs['width']) ? $attribs['width'] : 0;
-        $height = isset($attribs['height']) ? $attribs['height'] : 0;
-
-        if (isset($attribs['width']) && !preg_match('/\D/', $attribs['width'])) {
-            $styles[] = 'max-width:' . $attribs['width'] . 'px';
-        }
-
         $class = 'wf-responsive-' . $tag . '-container';
 
         $browser = JBrowser::getInstance();
@@ -111,19 +102,9 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
             } else {
                 $class = 'wf-responsive-video-container';
             }
-        } else {
-            if (!empty($styles)) {
-                $class .= ' wf-responsive-fixed-width';
-            }
         }
 
-        $style = '';
-
-        if (!empty($styles)) {
-            $style = ' style="' . implode(';', $styles) . '"'; 
-        }
-
-        return '<span class="' . $class . '" ' . $style . '>' . $default . '</span>';
+        return '<span class="' . $class . '">' . $default . '</span>';
     }
 
 }
