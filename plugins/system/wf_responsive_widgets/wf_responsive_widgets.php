@@ -111,6 +111,10 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
             } else {
                 $class = 'wf-responsive-video-container';
             }
+        } else {
+            if (!empty($styles)) {
+                $class .= ' wf-responsive-fixed-width';
+            }
         }
 
         $style = '';
