@@ -2,8 +2,8 @@
 <extension version="3.1" type="plugin" group="system" method="upgrade">
 	<name>plg_system_wf_responsive_widgets</name>
 	<author>Widget Factory</author>
-	<creationDate>January 2018</creationDate>
-	<copyright>Copyright (C) 2018 Ryan Demmer. All rights reserved.</copyright>
+	<creationDate>April 2019</creationDate>
+	<copyright>Copyright (C) 2019 Ryan Demmer. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>info@joomlacontenteditor.net</authorEmail>
 	<authorUrl>www.joomlacontenteditor.net</authorUrl>
