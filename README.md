@@ -10,22 +10,20 @@ Install using the Joomla Extensions Installer
 https://docs.joomla.org/Installing_an_extension
 
 ## What it does
-This plugin wraps all object, embed, audio, video, and some iframe elements in a span tag that contains a class that adds responsive features via css. For example, this code:
+This plugin adds a "wf-responsive" class to all object, embed, audio, video, and some iframe elements. For example, this code:
 
 `<video src="my_movie.mp4" type="video/mp4"></video>`
 
 will become:
 
-`<span class="wf-responsive-video-container"><video src="my_movie.mp4" type="video/mp4"></video></span>`
+`<video src="my_movie.mp4" type="video/mp4" class="wf-responsive"></video>`
 
-On iOS (iPad, iPhone, iPod), iframes (not already wrapped in the responsive container) are wrapped  to fix a scolling issue on this platform.
+This class uses a few css rules to make the element responsive, ie: it resizes in proportion to the original dimensions when the page resizes or the page orientation changes. For iframes, a little bit of extra javascript is required to adjust the iframes height as the page resizes.
 
 ## How to use it
-Once installed, remember to enable the plugin. Once enabled, all iframe, object, embed, video and audio tags will be wrapped in a `<span>` container when the page loads.
+Once installed, remember to enable the plugin. Once enabled, all iframe, object, embed, video and audio tags will have a wf-responsive class added when the page loads.
 
 To disable this for a particular element, add a class of "wf-no-container" to the element, eg: `<video class="wf-responsive-no-container" src="video.mp4"></video>`
-
-Add {responsive=off} at the beginning of any article to disable the plugin for that article only.
 
 ## Bug Reports / Support / Issues
 This plugin is in beta, so expect some probelms. Please use the Gitub Issue tracker to tell us about a any you've found.
