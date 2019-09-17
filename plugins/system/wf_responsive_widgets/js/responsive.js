@@ -36,9 +36,7 @@
             return Math.floor(this.height * this.offsetWidth / this.width)  + 'px';
         }).addClass('wf-responsive-iframe');
 
-        $('video, audio, object, embed').addClass(function() {
-            return 'wf-responsive-' + this.nodeName.toLowerCase();
-        });
+        $('video, audio, object, embed').addClass('wf-responsive');
 
         var resize = debounce(function () {
             $('iframe').css('height', function () {

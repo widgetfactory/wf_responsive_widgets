@@ -1,13 +1,11 @@
+.wf-responsive,
+.wf-responsive-iframe {
+  max-width: 100% !important;
+  height: auto;
+}
+
 /* fix scrolling issues on iOS */
 .wf-responsive-iframe {
   overflow: scroll !important;
   -webkit-overflow-scrolling: touch !important;
-}
-
-.wf-responsive-object,
-.wf-responsive-embed,
-.wf-responsive-video,
-.wf-responsive-iframe {
-  max-width: 100% !important;
-  height: auto;
 }
