@@ -27,7 +27,11 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
             return;
         }
 
+        // Include jQuery
+        JHtml::_('jquery.framework');
+
         $document->addStyleSheet(JURI::base(true) . '/plugins/system/wf_responsive_widgets/css/responsive.css');
+        $document->addScript(JURI::base(true) . '/plugins/system/wf_responsive_widgets/js/responsive.js', array('version'));
     }
 
     /**
@@ -52,8 +56,10 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
         }
         
         // check for previous processing
-        if (JString::strpos($row->text, '<span class="wf-responsive-') !== false) {
-            return true;
+        if (JString::strpos($row->text, '<span class="wf-') !== false) {
+            if (preg_match('#/wf-(iframe|object|embed|video)-container/i#', $row-text)) {
+                return true;
+            }
         }
 
         /*
@@ -86,25 +92,25 @@ class PlgSystemWf_responsive_widgets extends JPlugin {
         // get attributes
         $attribs = $this->getAttributes(trim($data));
 
-        if (!empty($attribs['class']) && strpos($attribs['class'], 'wf-responsive-no-container') !== false) {
+        if (!empty($attribs['class']) && strpos($attribs['class'], 'wf-no-container') !== false) {
             return $default;
         }
-        
-        $class = 'wf-responsive-' . $tag . '-container';
+
+        $class = 'wf-' . $tag . '-container';
 
         $browser = JBrowser::getInstance();
 
         if ($tag === "iframe") {
             if (!preg_match(self::$media_pattern, $attribs['src'])) {
                 if (preg_match('#/ip(hone|ad|od)/i#', $browser->getAgentString())) {
-                    $class = 'wf-responsive-' . $tag . '-container-ios';
+                    $class = 'wf-' . $tag . '-container-ios';
                 }
             } else {
-                $class = 'wf-responsive-video-container';
+                $class = 'wf-video-container';
             }
         }
 
-        return '<span class="' . $class . '">' . $default . '</span>';
+        return '<span class="wf-responsive-container ' . $class . '">' . $default . '</span>';
     }
 
 }
