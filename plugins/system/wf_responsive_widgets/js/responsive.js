@@ -16,7 +16,7 @@
     }
 
     $(document).ready(function () {
-        $('iframe').filter(function() {
+        $('iframe').not('.wf-responsive-no-container, .wf-responsive-off').filter(function() {
             if (/(dai\.?ly(motion)?|youtu(\.)?be|vimeo\.com)/i.test(this.src)) {
                 return true;
             }
@@ -36,7 +36,7 @@
             return Math.floor(this.height * this.offsetWidth / this.width)  + 'px';
         }).addClass('wf-responsive-iframe');
 
-        $('video, audio, object, embed').addClass('wf-responsive');
+        $('video, audio, object, embed').not('.wf-responsive-no-container, .wf-responsive-off').addClass('wf-responsive');
 
         var resize = debounce(function () {
             $('iframe').css('height', function () {

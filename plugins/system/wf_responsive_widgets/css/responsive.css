@@ -9,3 +9,57 @@
   overflow: scroll !important;
   -webkit-overflow-scrolling: touch !important;
 }
+
+/* Credits to http://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
+
+.wf-responsive-iframe-container,
+.wf-responsive-object-container,
+.wf-responsive-embed-container,
+.wf-responsive-video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* 16:9 */
+  padding-top: 25px;
+  width: 100%;
+  height: inherit;
+  display: block;
+  overflow: hidden;
+  /* center container */
+  margin: auto;
+}
+
+@media screen and (orientation:portrait) {
+  .wf-responsive-iframe-container {
+    width: 1px;
+    min-width: 100%;
+    height: 100%;
+    padding-bottom: 100%;
+  }
+}
+
+.wf-responsive-iframe-container iframe,
+.wf-responsive-object-container object,
+.wf-responsive-embed-container embed,
+.wf-responsive-video-container video,
+.wf-responsive-video-container iframe {
+  border: 0 none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.wf-responsive-audio-container {
+  text-align: center;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.wf-responsive-fixed-width object,
+.wf-responsive-fixed-width embed,
+.wf-responsive-fixed-width video {
+  height: auto;
+}
