@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>info@joomlacontenteditor.net</authorEmail>
 	<authorUrl>www.joomlacontenteditor.net</authorUrl>
-	<version>1.0.14</version>
+	<version>1.0.15</version>
 	<description>Wrap media elements in a responsive container</description>
 	<files folder="plugins/system/wf_responsive_widgets">
 		<filename plugin="wf_responsive_widgets">wf_responsive_widgets.php</filename>
