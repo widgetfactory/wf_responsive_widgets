@@ -18,6 +18,8 @@
 .wf-responsive-video-container {
   position: relative;
   padding-bottom: 56.25%;
+  /* support for aspect-ratio set variable if set */
+  padding-bottom: calc(var(--aspect-ratio, 0.5625) * 100%);
   /* 16:9 */
   /*padding-top: 25px;*/
   width: 100%;
