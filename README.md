@@ -1,5 +1,5 @@
 # Responsive Widgets
-A Joomla plugin for making object, video, audio and iframe elements responsive
+A Joomla plugin for making object, video, audio and iframe (including Youtube and Vimeo) elements responsive
 
 ## Download
 Click [here to download](https://github.com/widgetfactory/wf_responsive_widgets/archive/master.zip), or the Download Zip button on the right.
