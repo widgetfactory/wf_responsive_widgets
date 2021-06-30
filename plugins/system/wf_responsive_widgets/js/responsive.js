@@ -17,7 +17,7 @@
 
     $(document).ready(function () {
         $('iframe').not('.wf-responsive-no-container, .wf-responsive-off').filter(function() {
-            if (/(dai\.?ly(motion)?|youtu(\.)?be|vimeo\.com)/i.test(this.src)) {
+            if (/(dai\.?ly(motion)?|youtu(\.)?be|vimeo\.com|google\.com\/maps\/embed)/i.test(this.src)) {
                 return true;
             }
         }).css('max-width', function () {
@@ -37,6 +37,16 @@
         }).addClass('wf-responsive-iframe');
 
         $('video, audio, object, embed').not('.wf-responsive-no-container, .wf-responsive-off').addClass('wf-responsive');
+        
+        $('video').on('loadedmetadata', function(e) {        	
+        	if (this.videoWidth && this.videoHeight) {
+        		var ratio = this.videoWidth / this.videoHeight;
+        		
+        		if (ratio !== 16/9) {
+        			$(this).parent().css('--aspect-ratio', Math.floor(ratio));
+        		}
+        	}
+        });
 
         var resize = debounce(function () {
             $('iframe').css('height', function () {
