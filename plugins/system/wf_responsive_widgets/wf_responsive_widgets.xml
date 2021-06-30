@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="system" method="upgrade">
+	<name>plg_system_wf_responsive_widgets</name>
+	<author>Widget Factory</author>
+	<creationDate>January 2018</creationDate>
+	<copyright>Copyright (C) 2020 - 2021 Ryan Demmer. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>info@joomlacontenteditor.net</authorEmail>
+	<authorUrl>www.joomlacontenteditor.net</authorUrl>
+	<version>1.0.15</version>
+	<description>Wrap media elements in a responsive container</description>
+	<files folder="plugins/system/wf_responsive_widgets">
+		<filename plugin="wf_responsive_widgets">wf_responsive_widgets.php</filename>
+		<filename>index.html</filename>
+		<folder>css</folder>
+		<folder>js</folder>
+		<folder>language</folder>
+	</files>
+	<config>
+		 <fields name="params">
+            <fieldset name="options" group="options">
+				<field name="full_width_display" type="radio" default="0" label="PLG_SYSTEM_WF_RESPONSIVE_WIDGETS_FULL_WIDTH_DISPLAY" description="PLG_SYSTEM_WF_RESPONSIVE_WIDGETS_FULL_WIDTH_DISPLAY_DESC" class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+			</fieldset>
+		</fields>
+	</config>
+	<updateservers>
+        <server type="extension" priority="1" name="Wf Responsive Widgets"><![CDATA[https://cdn.joomlacontenteditor.net/updates/xml/plg_system_wf_responsive_widgets.xml]]></server>
+    </updateservers>
+</extension>

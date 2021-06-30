@@ -11,7 +11,7 @@ defined('_JEXEC') or die;
 class PlgSystemWf_responsive_widgets extends JPlugin
 {
 
-    private static $media_pattern = '#(dai\.?ly(motion)?|youtu(\.)?be|vimeo\.com)#i';
+    private static $media_pattern = '#(dai\.?ly(motion)?|youtu(\.)?be|vimeo\.com|google\.com\/maps\/embed)#i';
 
     public function onAfterDispatch()
     {
@@ -110,7 +110,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin
 
         $browser = JBrowser::getInstance();
 
-        if ($tag === "iframe") {
+        /*if ($tag === "iframe") {
             if (!preg_match(self::$media_pattern, $attribs['src'])) {
                 if (preg_match('#/ip(hone|ad|od)/i#', $browser->getAgentString())) {
                     $class = 'wf-responsive-' . $tag . '-container-ios';
@@ -118,7 +118,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin
             } else {
                 $class = 'wf-responsive-video-container';
             }
-        }
+        }*/
 
         return '<span class="' . $class . '">' . $default . '</span>';
     }
