@@ -1,0 +1,92 @@
+.wf-responsive,
+.wf-responsive-iframe {
+  max-width: 100% !important;
+  height: auto;
+}
+/* fix scrolling issues on iOS */
+.wf-responsive-iframe {
+  overflow: scroll !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+.wf-responsive-container {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+.wf-responsive-container iframe {
+  height: 100%;
+}
+/* Credits to http://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php */
+.wf-responsive-container-full {
+  position: relative;
+  padding-bottom: 56.25%;
+  /* support for aspect-ratio set variable if set */
+  padding-bottom: calc(var(--aspect-ratio, 0.5625) * 100%);
+  /* 16:9 */
+  /*padding-top: 25px;*/
+  width: 100%;
+  height: inherit;
+  display: block;
+  overflow: hidden;
+  /* center container */
+  margin: auto;
+}
+.wf-responsive-iframe-poster {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+}
+.wf-responsive-iframe-poster:hover .wf-responsive-iframe-poster-play {
+  opacity: 0.5;
+}
+.wf-responsive-iframe-poster .wf-responsive-iframe-poster-play {
+  display: block;
+}
+.wf-responsive-iframe-poster iframe {
+  display: none;
+}
+.wf-responsive-iframe-poster-play {
+  display: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: max-content;
+  max-width: 100%;
+  box-sizing: border-box;
+  position: absolute;
+}
+.wf-responsive-iframe-poster-play svg {
+  fill: #fff;
+}
+@media screen and (orientation: portrait) {
+  .wf-responsive-iframe-container {
+    width: 1px;
+    min-width: 100%;
+    height: 100%;
+    padding-bottom: 100%;
+  }
+}
+.wf-responsive-container-full iframe,
+.wf-responsive-container-full object,
+.wf-responsive-container-full embed,
+.wf-responsive-container-full video {
+  border: 0 none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+.wf-responsive-audio-container {
+  text-align: center;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.wf-responsive-fixed-width object,
+.wf-responsive-fixed-width embed,
+.wf-responsive-fixed-width video {
+  height: auto;
+}

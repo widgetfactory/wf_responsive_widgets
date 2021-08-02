@@ -10,9 +10,6 @@ defined('_JEXEC') or die;
  */
 class PlgSystemWf_responsive_widgets extends JPlugin
 {
-
-    private static $media_pattern = '#(dai\.?ly(motion)?|youtu(\.)?be|vimeo\.com|google\.com\/maps\/embed)#i';
-
     public function onAfterDispatch()
     {
         $app = JFactory::getApplication();
@@ -32,11 +29,8 @@ class PlgSystemWf_responsive_widgets extends JPlugin
         // Include jQuery
         JHtml::_('jquery.framework');
 
-        $document->addStyleSheet(JURI::base(true) . '/plugins/system/wf_responsive_widgets/css/responsive.css');
-
-        if ((int) $this->params->get('full_width_display', 0) === 0) {
-            $document->addScript(JURI::base(true) . '/plugins/system/wf_responsive_widgets/js/responsive.js', array('version'));
-        }
+        $document->addStyleSheet(JURI::base(true) . '/plugins/system/wf_responsive_widgets/css/responsive.min.css');
+        $document->addScript(JURI::base(true) . '/plugins/system/wf_responsive_widgets/js/responsive.js', array('version'));
     }
 
     /**
@@ -44,7 +38,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin
      *
      * @param   string   $context  The context of the content being passed to the plugin.
      * @param   mixed    &$row     An object with a "text" property.
-     * @param   mixed    &$params  Additional parameters. See {@see PlgSystemWf_responsive_widgets()}.
+     * @param   mixed    &$params  Additional parameters.
      * @param   integer  $page     Optional page number. Unused. Defaults to zero.
      *
      * @return  void
@@ -56,18 +50,8 @@ class PlgSystemWf_responsive_widgets extends JPlugin
             return true;
         }
 
-        // skip if we don't want full-width display
-        if ((int) $this->params->get('full_width_display', 0) === 0) {
-            return true;
-        }
-
         // don't process if there is not text
         if (empty($row->text)) {
-            return true;
-        }
-
-        // check for previous processing
-        if (JString::strpos($row->text, '<span class="wf-responsive-') !== false) {
             return true;
         }
 
@@ -80,7 +64,10 @@ class PlgSystemWf_responsive_widgets extends JPlugin
             return true;
         }
 
-        jimport('joomla.environment.browser');
+        // check for previous processing
+        if (JString::strpos($row->text, '<span class="wf-responsive-') !== false) {
+            return true;
+        }
 
         $row->text = preg_replace_callback('#<(iframe|object|video|audio|embed)([^>]+)>([\s\S]*?)<\/\1>#i', array($this, 'wrap'), $row->text);
     }
@@ -106,20 +93,17 @@ class PlgSystemWf_responsive_widgets extends JPlugin
             return $default;
         }
 
-        $class = 'wf-responsive-' . $tag . '-container';
+        $class = 'wf-responsive-container';
 
-        $browser = JBrowser::getInstance();
+        if ($this->params->get('full_width_display', 0) == 1) {
+            $class .= ' wf-responsive-container-full';
+        }
 
-        /*if ($tag === "iframe") {
-            if (!preg_match(self::$media_pattern, $attribs['src'])) {
-                if (preg_match('#/ip(hone|ad|od)/i#', $browser->getAgentString())) {
-                    $class = 'wf-responsive-' . $tag . '-container-ios';
-                }
-            } else {
-                $class = 'wf-responsive-video-container';
-            }
-        }*/
+        // add poster flag to container
+        if ($tag == 'iframe' && !empty($attribs['data-poster'])) {
+            $class .= ' wf-responsive-iframe-poster';
+        }
 
-        return '<span class="' . $class . '">' . $default . '</span>';
+        return '<span class="' . $class . '" role="figure">' . $default . '</span>';
     }
 }
