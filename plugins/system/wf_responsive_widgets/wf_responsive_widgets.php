@@ -2,6 +2,8 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\String\StringHelper;
+
 /**
  * Responsive Widgets class
  *
@@ -26,6 +28,30 @@ class PlgSystemWf_responsive_widgets extends JPlugin
             return;
         }
 
+        // get active menu
+        $menus = $app->getMenu();
+        $menu = $menus->getActive();
+
+        // get menu items from parameter
+        $menuitems_assign = (array) $this->params->get('menu_assign');
+
+        // is there a menu assignment?
+        if (!empty($menuitems_assign) && !empty($menuitems_assign[0])) {
+            if ($menu && !in_array($menu->id, (array) $menuitems_assign)) {
+                return;
+            }
+        }
+
+        // get excluded menu items from parameter
+        $menuitems_exclude = (array) $this->params->get('menu_exclude');
+
+        // is there a menu exclusion?
+        if (!empty($menuitems_exclude) && !empty($menuitems_exclude[0])) {
+            if ($menu && in_array($menu->id, (array) $menuitems_exclude)) {
+                return;
+            }
+        }
+
         // Include jQuery
         JHtml::_('jquery.framework');
 
@@ -34,7 +60,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin
     }
 
     /**
-     * Wrap media elements in a div container.
+     * Wrap media elements in a container.
      *
      * @param   string   $context  The context of the content being passed to the plugin.
      * @param   mixed    &$row     An object with a "text" property.
@@ -59,22 +85,17 @@ class PlgSystemWf_responsive_widgets extends JPlugin
          * Check for presence of {responsive=off} which is disables this
          * bot for the item.
          */
-        if (JString::strpos($row->text, '{responsive=off}') !== false) {
-            $row->text = JString::str_ireplace('{responsive=off}', '', $row->text);
+        if (StringHelper::strpos($row->text, '{responsive=off}') !== false) {
+            $row->text = StringHelper::str_ireplace('{responsive=off}', '', $row->text);
             return true;
         }
 
         // check for previous processing
-        if (JString::strpos($row->text, '<span class="wf-responsive-') !== false) {
+        if (StringHelper::strpos($row->text, '<span class="wf-responsive-') !== false) {
             return true;
         }
 
         $row->text = preg_replace_callback('#<(iframe|object|video|audio|embed)([^>]+)>([\s\S]*?)<\/\1>#i', array($this, 'wrap'), $row->text);
-    }
-
-    private function getAttributes($string)
-    {
-        return JUtility::parseAttributes($string);
     }
 
     private function wrap($matches)
@@ -87,7 +108,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin
         $default = '<' . $tag . $data . '>' . $html . '</' . $tag . '>';
 
         // get attributes
-        $attribs = $this->getAttributes(trim($data));
+        $attribs = JUtility::parseAttributes(trim($data));
 
         if (!empty($attribs['class']) && strpos($attribs['class'], 'wf-responsive-no-container') !== false) {
             return $default;
