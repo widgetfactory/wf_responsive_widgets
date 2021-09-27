@@ -14,7 +14,7 @@ class PlgSystemWf_responsive_widgets extends JPlugin
     {
         $app = JFactory::getApplication();
 
-        if ($app->isAdmin()) {
+        if ($app->getClientId() !== 0) {
             return;
         }
 
