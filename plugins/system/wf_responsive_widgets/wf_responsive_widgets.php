@@ -95,7 +95,13 @@ class PlgSystemWf_responsive_widgets extends JPlugin
             return true;
         }
 
-        $row->text = preg_replace_callback('#<(iframe|object|video|audio|embed)([^>]+)>([\s\S]*?)<\/\1>#i', array($this, 'wrap'), $row->text);
+        $elements = $this->params->get('elements', 'iframe,object,video,embed');
+
+        if (is_string($elements)) {
+            $elements = explode(',', $elements);
+        }
+
+        $row->text = preg_replace_callback('#<(' . implode('|', $elements) . ')([^>]+)>([\s\S]*?)<\/\1>#i', array($this, 'wrap'), $row->text);
     }
 
     private function wrap($matches)

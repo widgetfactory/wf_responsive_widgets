@@ -1,3 +1,5 @@
+/* eslint-disable consistent-this */
+/* global jQuery */
 (function ($) {
     function debounce(func, wait, immediate) {
         var timeout;
@@ -6,19 +8,23 @@
                 args = arguments;
             var later = function () {
                 timeout = null;
-                if (!immediate) func.apply(context, args);
+                if (!immediate) { 
+                    func.apply(context, args); 
+                }
             };
             var callNow = immediate && !timeout;
             clearTimeout(timeout);
             timeout = setTimeout(later, wait);
-            if (callNow) func.apply(context, args);
+            if (callNow) { 
+                func.apply(context, args); 
+            }
         };
     }
 
     var button = '<div role="presentation" aria-label="Click to play" class="wf-responsive-iframe-poster-play"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="39" height="39" viewBox="0 0 512 512"><title>Click to play</title><path d="M256 0c-141.385 0-256 114.615-256 256s114.615 256 256 256 256-114.615 256-256-114.615-256-256-256zM256 464c-114.875 0-208-93.125-208-208s93.125-208 208-208 208 93.125 208 208-93.125 208-208 208zM192 144l192 112-192 112z"></path></svg></div>';
 
     $(document).ready(function () {
-        $('iframe, video, audio, object, embed').not('.wf-responsive-no-container, .wf-responsive-off').each(function () {
+        $('iframe, video, object, embed', 'span.wf-responsive-container').each(function () {
             if ($(this.parentNode).hasClass('wf-responsive-full')) {
                 return true;
             }

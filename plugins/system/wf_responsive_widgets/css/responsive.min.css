@@ -8,6 +8,9 @@
   overflow: scroll !important;
   -webkit-overflow-scrolling: touch !important;
 }
+.wf-responsive-iframe {
+  border: 0;
+}
 .wf-responsive-container {
   display: inline-block;
   position: relative;
