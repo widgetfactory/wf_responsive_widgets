@@ -78,6 +78,8 @@
         }, 64);
 
         $(window).on('resize.wf, orientationchange.wf', resize);
+        
+        resize();
     });
 
 })(jQuery);
