@@ -39,7 +39,7 @@ A few configuration options are available in the plugin parameters.
 Enable this option to display the media to fit the width of the page.
 
 #### Click to Play
-Enabling this option will replace any media iframe (Youtube, Vimeo etc.) with a placeholder, loading the iframe when it is clicked.
+Enabling this option will replace any media iframe (Youtube, Vimeo etc.) with a placeholder, loading the iframe when it is clicked. The placeholder caption can be chanhed by using a [Language Override](https://docs.joomla.org/Help4.x:Languages:_Edit_Override) for the **Language Constant** ```PLG_SYSTEM_WF_RESPONSIVE_WIDGETS_CLICK_TO_PLAY_TEXT``` 
 
 #### Assign to Menu
 Assign the plugin to load on these menu items only.
