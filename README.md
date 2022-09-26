@@ -33,7 +33,7 @@ To disable this for a particular element, add a class of `wf-no-container` or `w
 ```
 
 ### Plugin Options
-A few plugin configuration options are available in the plugin parameters.
+A few configuration options are available in the plugin parameters.
 
 #### Full Width Display
 Enable this option to display the media to fit the width of the page.
@@ -50,7 +50,8 @@ Prevent the plugin from loading on the selected menu items.
 #### Elements
 Select the media elements processed by this plugin. By default, the iframe,video,audio and embed elements are processed.
 
-A poster image can be set on iframe elements using a data-poster attribute. This will display the image and a play button, which will load the iframe when clicked, eg:
+#### IFrame Poster Image
+A poster image can be set on iframe elements using a ```data-poster``` attribute. This will display the image and a play button, which will load the iframe when clicked, eg:
 ```html
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VWcG8mpc208" data-poster="images/joomla.jpg" frameborder="0"></iframe>
 ```
