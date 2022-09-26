@@ -2,7 +2,12 @@
 
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\String\StringHelper;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\Utility\Utility;
+use Joomla\CMS\HTML\HTMLHelper;
 
 /**
  * Responsive Widgets class
@@ -10,17 +15,17 @@ use Joomla\String\StringHelper;
  * @package     Joomla.Plugin
  * @subpackage  System.wf-responsive-widgets
  */
-class PlgSystemWf_responsive_widgets extends JPlugin
+class PlgSystemWf_responsive_widgets extends CMSPlugin
 {
     public function onAfterDispatch()
     {
-        $app = JFactory::getApplication();
+        $app = Factory::getApplication();
 
         if ($app->getClientId() !== 0) {
             return;
         }
 
-        $document = JFactory::getDocument();
+        $document = Factory::getDocument();
         $docType = $document->getType();
 
         // only in html pages
@@ -53,10 +58,10 @@ class PlgSystemWf_responsive_widgets extends JPlugin
         }
 
         // Include jQuery
-        JHtml::_('jquery.framework');
+        HTMLHelper::_('jquery.framework');
 
-        $document->addStyleSheet(JURI::base(true) . '/plugins/system/wf_responsive_widgets/css/responsive.min.css');
-        $document->addScript(JURI::base(true) . '/plugins/system/wf_responsive_widgets/js/responsive.js', array('version'));
+        $document->addStyleSheet(Uri::base(true) . '/plugins/system/wf_responsive_widgets/css/responsive.min.css');
+        $document->addScript(Uri::base(true) . '/plugins/system/wf_responsive_widgets/js/responsive.js', array('version'));
     }
 
     /**
@@ -95,6 +100,8 @@ class PlgSystemWf_responsive_widgets extends JPlugin
             return true;
         }
 
+        $this->loadLanguage();
+
         $elements = $this->params->get('elements', 'iframe,object,video,embed');
 
         if (is_string($elements)) {
@@ -113,24 +120,42 @@ class PlgSystemWf_responsive_widgets extends JPlugin
         // default return html
         $default = '<' . $tag . $data . '>' . $html . '</' . $tag . '>';
 
-        // get attributes
-        $attribs = JUtility::parseAttributes(trim($data));
+        // get iframe attributes
+        $iframeAttribs = Utility::parseAttributes(trim($data));
 
-        if (!empty($attribs['class']) && strpos($attribs['class'], 'wf-responsive-no-container') !== false) {
+        if (!empty($iframeAttribs['class']) && strpos($iframeAttribs['class'], 'wf-responsive-no-container') !== false) {
             return $default;
         }
 
-        $class = 'wf-responsive-container';
+        $attributes = array(
+            'class' => 'wf-responsive-container',
+            'role'  => 'figure'
+        );
 
         if ($this->params->get('full_width_display', 0) == 1) {
-            $class .= ' wf-responsive-container-full';
+            $attributes['class'] .= ' wf-responsive-container-full';
         }
 
-        // add poster flag to container
-        if ($tag == 'iframe' && !empty($attribs['data-poster'])) {
-            $class .= ' wf-responsive-iframe-poster';
+        if ($tag == 'iframe') {
+            if ($this->params->get('click_to_play', 0) || !empty($iframeAttribs['data-poster'])) {
+                
+                $attributes['class'] .= ' wf-responsive-iframe-poster';
+
+                // allow poster without click to play
+                if ($this->params->get('click_to_play', 0)) {               
+                    $attributes['aria-label'] = JText::_('PLG_SYSTEM_WF_RESPONSIVE_WIDGETS_CLICK_TO_PLAY_TEXT');
+                }
+            }
         }
 
-        return '<span class="' . $class . '" role="figure">' . $default . '</span>';
+        $content = '<span';
+
+        foreach($attributes as $name => $value) {
+            $content .= ' ' . $name . '="' . htmlspecialchars($value) . '"';
+        }
+
+        $content .= '>' . $default . '</span>';
+
+        return $content;
     }
 }
