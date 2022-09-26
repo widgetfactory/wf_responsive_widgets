@@ -32,5 +32,14 @@ To disable this for a particular element, add a class of `wf-no-container` or `w
 <video class="wf-responsive-no-container" src="video.mp4"></video>
 ```
 
+Enabling the **Full Width** option in the plugin parameters will display the media to fit the width of the page.
+
+Enabling the **Click to Play** option  in the plugin parameters will replace any media iframe (Youtube, Vimeo etc.) with a placeholder, loading the iframe when it is clicked.
+
+A poster image can be set on iframe elements using a data-poster attribute. This will display the image and a play button, which will load the iframe when clicked, eg:
+```html
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VWcG8mpc208" data-poster="images/joomla.jpg" frameborder="0"></iframe>
+```
+
 ## Bug Reports / Support / Issues
-This plugin is in beta, so expect some probelms. Please use the Gitub Issue tracker to tell us about a any you've found.
+Please use the Gitub Issue tracker to report any issues found.
