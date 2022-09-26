@@ -7,7 +7,7 @@
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>info@joomlacontenteditor.net</authorEmail>
 	<authorUrl>www.joomlacontenteditor.net</authorUrl>
-	<version>1.0.23</version>
+	<version>1.0.24</version>
 	<description>Wrap media elements in a responsive container</description>
 	<files folder="plugins/system/wf_responsive_widgets">
 		<filename plugin="wf_responsive_widgets">wf_responsive_widgets.php</filename>
@@ -20,6 +20,11 @@
 		 <fields name="params">
             <fieldset name="options" group="options" addfieldpath="/plugins/system/wf_responsive_widgets/fields">
 				<field name="full_width_display" type="radio" default="0" label="PLG_SYSTEM_WF_RESPONSIVE_WIDGETS_FULL_WIDTH_DISPLAY" description="PLG_SYSTEM_WF_RESPONSIVE_WIDGETS_FULL_WIDTH_DISPLAY_DESC" class="btn-group btn-group-yesno">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>
+
+				<field name="click_to_play" type="radio" default="0" label="PLG_SYSTEM_WF_RESPONSIVE_WIDGETS_CLICK_TO_PLAY" description="PLG_SYSTEM_WF_RESPONSIVE_WIDGETS_CLICK_TO_PLAY_DESC" class="btn-group btn-group-yesno">
                     <option value="1">JYES</option>
                     <option value="0">JNO</option>
                 </field>
