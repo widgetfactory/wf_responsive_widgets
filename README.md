@@ -32,9 +32,23 @@ To disable this for a particular element, add a class of `wf-no-container` or `w
 <video class="wf-responsive-no-container" src="video.mp4"></video>
 ```
 
-Enabling the **Full Width** option in the plugin parameters will display the media to fit the width of the page.
+### Plugin Options
+A few plugin configuration options are available in the plugin parameters.
 
-Enabling the **Click to Play** option  in the plugin parameters will replace any media iframe (Youtube, Vimeo etc.) with a placeholder, loading the iframe when it is clicked.
+#### Full Width Display
+Enable this option to display the media to fit the width of the page.
+
+#### Click to Play
+Enabling this option will replace any media iframe (Youtube, Vimeo etc.) with a placeholder, loading the iframe when it is clicked.
+
+#### Assign to Menu
+Assign the plugin to load on these menu items only.
+
+#### Exclude from Menu
+Prevent the plugin from loading on the selected menu items.
+
+#### Elements
+Select the media elements processed by this plugin. By default, the iframe,video,audio and embed elements are processed.
 
 A poster image can be set on iframe elements using a data-poster attribute. This will display the image and a play button, which will load the iframe when clicked, eg:
 ```html
