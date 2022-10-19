@@ -4,6 +4,9 @@ A Joomla plugin for making object, video, audio and iframe (including Youtube an
 ## Download
 Click [here to download](https://github.com/widgetfactory/wf_responsive_widgets/archive/master.zip), or the Download Zip button on the right.
 
+## Requirements
+Joomla 3.9 or later. Joomla 4.0 or later
+
 ## Installation
 Install using the Joomla Extensions Installer
 
