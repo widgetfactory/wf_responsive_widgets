@@ -22,7 +22,7 @@ will become:
 <video src="my_movie.mp4" type="video/mp4" class="wf-responsive"></video>
 ```
 
-This class uses a few css rules to make the element responsive, ie: it resizes in proportion to the original dimensions when the page resizes or the page orientation changes. For iframes, a little bit of extra javascript is required to adjust the iframes height as the page resizes.
+This class uses a few css rules to make the element responsive, ie: it resizes in proportion to the original dimensions when the page resizes or the page orientation changes. For iframes, a little bit of extra html and javascript is required to adjust the iframes height as the page resizes.
 
 ## How to use it
 Once installed, remember to enable the plugin. Once enabled, all iframe, object, embed, video and audio tags will have a wf-responsive class added when the page loads.
