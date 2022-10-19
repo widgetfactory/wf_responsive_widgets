@@ -7,6 +7,7 @@ use Joomla\CMS\Plugin\CMSPlugin;
 use Joomla\String\StringHelper;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\Utility\Utility;
+use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\HTML\HTMLHelper;
 
 /**
@@ -61,7 +62,7 @@ class PlgSystemWf_responsive_widgets extends CMSPlugin
         HTMLHelper::_('jquery.framework');
 
         $document->addStyleSheet(Uri::base(true) . '/plugins/system/wf_responsive_widgets/css/responsive.min.css');
-        $document->addScript(Uri::base(true) . '/plugins/system/wf_responsive_widgets/js/responsive.js', array('version'));
+        $document->addScript(Uri::base(true) . '/plugins/system/wf_responsive_widgets/js/responsive.min.js', array('version'));
     }
 
     /**
@@ -121,40 +122,59 @@ class PlgSystemWf_responsive_widgets extends CMSPlugin
         $default = '<' . $tag . $data . '>' . $html . '</' . $tag . '>';
 
         // get iframe attributes
-        $iframeAttribs = Utility::parseAttributes(trim($data));
+        $attribs = Utility::parseAttributes(trim($data));
 
-        if (!empty($iframeAttribs['class']) && strpos($iframeAttribs['class'], 'wf-responsive-no-container') !== false) {
+        if (!empty($attribs['class']) && strpos($attribs['class'], 'wf-responsive-no-container') !== false) {
             return $default;
         }
 
-        $attributes = array(
-            'class' => 'wf-responsive-container',
-            'role'  => 'figure'
-        );
-
-        if ($this->params->get('full_width_display', 0) == 1) {
-            $attributes['class'] .= ' wf-responsive-container-full';
+        if (!empty($attribs['data-poster'])) {
+            $attribs['data-poster'] = preg_replace('#(?!/|[a-zA-Z0-9\-]+:|\#|\')([^"]*)#m', Uri::base(true) . '/$1', $attribs['data-poster']);  
         }
 
+        $attribs['class'] = isset($attribs['class']) ? $attribs['class'] : '';
+
+        $attribs['class'] .= ' wf-responsive';
+
+        if ($this->params->get('full_width_display', 0) == 1) {
+            $attribs['class'] .= ' wf-responsive-full';
+        }
+
+        $attribs['class'] = trim($attribs['class']);
+
+        // default return html
+        $content = '<' . $tag . ' ' . ArrayHelper::toString($attribs) . '>' . $html . '</' . $tag . '>';
+
         if ($tag == 'iframe') {
-            if ($this->params->get('click_to_play', 0) || !empty($iframeAttribs['data-poster'])) {
-                
+            $attributes = array(
+                'class' => 'wf-responsive-container',
+                'role'  => 'figure'
+            );
+            
+            if ($this->params->get('full_width_display', 0) == 1) {
+                $attributes['class'] .= ' wf-responsive-container-full';
+            }
+            
+            if ($this->params->get('click_to_play', 0) || !empty($attribs['data-poster'])) {
+
                 $attributes['class'] .= ' wf-responsive-iframe-poster';
 
                 // allow poster without click to play
-                if ($this->params->get('click_to_play', 0)) {               
+                if ($this->params->get('click_to_play', 0)) {
                     $attributes['aria-label'] = JText::_('PLG_SYSTEM_WF_RESPONSIVE_WIDGETS_CLICK_TO_PLAY_TEXT');
                 }
             }
+
+            $container = '<span';
+
+            foreach ($attributes as $name => $value) {
+                $container .= ' ' . $name . '="' . htmlspecialchars($value) . '"';
+            }
+
+            $container .= '>' . $content . '</span>';
+
+            return $container;
         }
-
-        $content = '<span';
-
-        foreach($attributes as $name => $value) {
-            $content .= ' ' . $name . '="' . htmlspecialchars($value) . '"';
-        }
-
-        $content .= '>' . $default . '</span>';
 
         return $content;
     }
