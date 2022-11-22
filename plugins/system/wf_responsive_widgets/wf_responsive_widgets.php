@@ -129,7 +129,14 @@ class PlgSystemWf_responsive_widgets extends CMSPlugin
         }
 
         if (!empty($attribs['data-poster'])) {
-            $attribs['data-poster'] = preg_replace('#(?!/|[a-zA-Z0-9\-]+:|\#|\')([^"]*)#m', Uri::base(true) . '/$1', $attribs['data-poster']);  
+            $attribs['data-poster'] = preg_replace_callback('#(?!/|[a-zA-Z0-9\-]+:|\#|\')([^"]*)#m', function ($item) {
+                if (empty(($item[0]))) {
+                    return "";
+                }
+
+                return Uri::base(true) . '/' . $item[0];
+
+            }, $attribs['data-poster']);  
         }
 
         $attribs['class'] = isset($attribs['class']) ? $attribs['class'] : '';
