@@ -3,11 +3,11 @@
 	<name>plg_system_wf_responsive_widgets</name>
 	<author>Widget Factory</author>
 	<creationDate>January 2018</creationDate>
-	<copyright>Copyright (C) 2020 - 2022 Ryan Demmer. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2020 - 2023 Ryan Demmer. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>info@joomlacontenteditor.net</authorEmail>
 	<authorUrl>www.joomlacontenteditor.net</authorUrl>
-	<version>1.0.27</version>
+	<version>1.0.28</version>
 	<description>Wrap media elements in a responsive container</description>
 	<files folder="plugins/system/wf_responsive_widgets">
 		<filename plugin="wf_responsive_widgets">wf_responsive_widgets.php</filename>
