@@ -160,6 +160,16 @@ class PlgSystemWf_responsive_widgets extends CMSPlugin
             
             if ($this->params->get('full_width_display', 0) == 1) {
                 $attributes['class'] .= ' wf-responsive-container-full';
+            } else {
+                if (isset($attribs['height'])) {
+                    $height = $attribs['height'];
+
+                    if (is_numeric($height)) {
+                        $height .= 'px';
+                    }
+                    
+                    $attributes['style'] = 'height:' . $height;
+                } 
             }
             
             if ($this->params->get('click_to_play', 0) || !empty($attribs['data-poster'])) {
